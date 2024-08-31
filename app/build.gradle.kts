@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -19,6 +20,8 @@ android {
 
     buildFeatures {
         buildConfig = true
+        dataBinding = true
+        viewBinding = true
     }
 
     buildTypes {
@@ -50,13 +53,32 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.legacy.support.v4)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.lifecycle.viewmodel.ktx)
 
     //Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
+
+    // RecyclerView
+    implementation(libs.recyclerview)
+
+    // Coroutines
+    implementation(libs.coroutines.core)
+    implementation(libs.coroutines.android)
+
+    // Room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    //kapt(libs.room.compiler)  // Nếu bạn sử dụng Kotlin, thêm 'kapt'
+
+    // Navigation
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
+
 }
