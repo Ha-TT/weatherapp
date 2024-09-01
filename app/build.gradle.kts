@@ -74,11 +74,13 @@ dependencies {
 
     // Room
     implementation(libs.room.runtime)
+    annotationProcessor(libs.room.compiler)
+    kapt(libs.room.compiler)
     implementation(libs.room.ktx)
-    //kapt(libs.room.compiler)  // Nếu bạn sử dụng Kotlin, thêm 'kapt'
 
     // Navigation
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
+//    implementation(kotlin("script-runtime"))
 
 }

@@ -1,13 +1,15 @@
 package com.example.weatherapp.viewmodels
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.weatherapp.db.WeatherDatabase
 import com.example.weatherapp.model.WeatherResponse
 import com.example.weatherapp.network.Repository
 import kotlinx.coroutines.launch
 
-class WeatherViewModel : ViewModel() {
+class WeatherViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: Repository
     val weatherLiveData: MutableLiveData<WeatherResponse> = MutableLiveData()
     val editTextLiveData: MutableLiveData<String> = MutableLiveData()
@@ -15,8 +17,8 @@ class WeatherViewModel : ViewModel() {
     val isLoading = MutableLiveData<Boolean>()
 
     init {
-//        val weatherDao = WeatherDatabase.getDatabase(application).weatherDao()
-        repository = Repository()
+        val weatherDao = WeatherDatabase.getDatabase(application).weatherDao()
+        repository = Repository(weatherDao)
     }
 
     fun fetchNextWeekWeatherByCity(city: String) {
@@ -32,10 +34,6 @@ class WeatherViewModel : ViewModel() {
             }
         }
     }
-
-//    fun getCachedWeather(): LiveData<List<WeatherData>> {
-//        return repository.getCachedWeather()
-//    }
 
     fun onSearchButtonClicked() {
         val city = editTextLiveData.value

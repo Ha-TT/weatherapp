@@ -18,7 +18,6 @@ class WeatherListAdapter(private var weatherList: List<WeatherData>) : RecyclerV
 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
         holder.binding.weather = weatherList[position]
-        holder.binding.executePendingBindings()
     }
 
     override fun getItemCount(): Int = weatherList.size

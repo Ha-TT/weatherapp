@@ -17,10 +17,6 @@ class WeatherForecastFragment : Fragment() {
     private lateinit var viewModel: WeatherViewModel
     private lateinit var adapter: WeatherListAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val binding = FragmentWeatherForecastListBinding.inflate(inflater)
